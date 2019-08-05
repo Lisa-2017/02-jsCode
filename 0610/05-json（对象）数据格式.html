@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// var json01 = {name:'周',age:41,gender:true,address:'中国'};
+			// 标准的写法：所有的属性名,字符串都要有双引号.
+			// 在进行网络传输时,虽然用对象的数据格式,但是在传输时不能直接传对象,要将对象转成字符串进行传输
+			var json01 = {"name":"周","age":41,"gender":true,"address":'中国'};
+			console.log(json01);
+			
+			// 将json对象格式的数据转换成字符串再进行传输
+			var str = JSON.stringify(json01);
+			console.log(str);
+			
+			//将字符串转换成对象
+			var a ='{"name":"周","age":41,"gender":true,"address":"中国"}';
+			var obj = JSON.parse(a);
+			console.log(obj);
+		</script>
+	</body>
+</html>

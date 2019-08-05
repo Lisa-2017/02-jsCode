@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button>设置宽</button>
+		<button>设置高</button>
+		<button>设置背景色</button>
+		<button>设置三项</button>
+		<button>读取</button>
+		<div id="box"></div>
+		<script type="text/javascript">
+// 			var btns = document.getElementsByTagName('button');
+// 			var box = document.getElementById('box');
+// 			btns[0].onclick = function(){
+// 				box.style.width = '200px';
+// 			}
+// 			btns[1].onclick = function(){
+// 				box.style.height = '300px';
+// 			}
+// 			btns[2].onclick = function(){
+// 				//css的复合属性用驼峰命名法
+// 				box.style.backgroundColor = '#7FFFD4';
+// 				
+// 			}
+// 			btns[3].onclick = function(){
+// 				box.style.width = '200px';
+// 				box.style.height = '300px';
+// 				box.style.backgroundColor = 'rgba(255,0,255,.5)';
+// 
+// 			}
+// 			btns[4].onclick = function(){
+// 				//读取的宽度是行内样式的宽度,继承的宽度读取不到
+// 				console.log(box.style.width);
+// 				
+// 			}
+			
+			
+			var btns = document.getElementsByTagName('button');
+			var box = document.getElementById('box');
+			btns[2].onclick = function(){
+				box.style.width = '400px';
+				box.style.height = '300px';
+				box.style.backgroundColor = 'rgba(255,100,255,.5)';
+			}
+			
+		</script>
+	</body>
+</html>

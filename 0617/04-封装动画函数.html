@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 100px;
+				height: 100px;
+				background-color: #FF7F50;
+				position: absolute;
+				top: 100px;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<button >移动到400</button>
+		<button >移动到800</button>
+		<div id="box"></div>
+		<script type="text/javascript">
+			var btns = document.getElementsByTagName('button');
+			var box = document.getElementById('box');
+			var timer = null;
+			btns[0].onclick = function(){
+				myAnimate(box,400);
+			}
+			btns[1].onclick = function(){
+				myAnimate(box,800);
+			}
+			
+			
+			function myAnimate(obj,target){
+				
+				// console.log(obj.timer);
+				// 在函数中,将定时器的标识保存在固定的属性里,因为保存在函数中的局部变量是,每次调用都会重新生成一个相同名称的新的定时器变量在不同的地址中,此时关闭的不是上一次的变量中存储的标识，无法阻止定时器累加.
+				clearInterval(obj.timer);
+				// var timer = setInterval()(...);每次进入都重新开启新的定时器.
+				
+				// obj.timer 动态添加属性,确保定时器是一个固定的,多次进入后当清楚定时器后，就可以操控同一个定时器。不用重新开启新的定时器.
+				obj.timer = setInterval(function(){
+					var step = 10; //步数
+					//当前left属性值
+					var current = obj.offsetLeft;
+					// 判断当前值在目标值的哪一侧,如果当前值小于目标值则step为正向右移动,反之step为负向左移动；在赋值给step. //解决向右移动到更大的目标值后,再次调用无法向左移动到较小的目标值问题.
+					step = target - current >=0 ? step :-step;					
+					if( Math.abs(target-current) >= Math.abs(step) ){
+						current = current+step; // 自增两
+						obj.style.left = current+'px';						
+					}else{
+						clearInterval(timer);
+						current = target+'px'; //表示已经接近目标位置,直接设置为目标值,可以解决不能到达终点问题.
+						
+					}					
+				},50)
+			}
+		</script>
+	</body>
+</html>

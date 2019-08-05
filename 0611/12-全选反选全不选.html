@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			input{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<button>全选</button>
+		<button>取消全选</button>
+		<button>反选</button>
+		
+		<input type="checkbox" value="" name="">
+		<input type="checkbox" value="" name="">
+		<input type="checkbox" value="" name="">
+		<input type="checkbox" value="" name="">
+		<input type="checkbox" value="" name="">
+		
+		<script type="text/javascript">
+			var btns = document.getElementsByTagName('button');
+			var inputs = document.getElementsByTagName('input');
+			btns[0].onclick =function (){
+				for(var i =0;i<inputs.length;i++){
+					inputs[i].checked = true;
+				}
+			}
+			btns[1].onclick =function (){
+				for(var i =0;i<inputs.length;i++){
+					inputs[i].checked = false;
+				}
+			}
+			btns[2].onclick = function(){
+				for(var i =0;i<inputs.length;i++){
+					//第一种方式:判断真假
+					// if(inputs[i].checked){ //等价于
+					// 	inputs[i].checked = false;
+					// }else{
+					// 	inputs[i].checked = true;
+					// }
+					
+					//第二种方式：每个元素的checked属性值取反再赋值给自己
+					inputs[i].checked = !(inputs[i].checked);
+				}
+			}
+			
+		</script>
+		
+	</body>
+</html>

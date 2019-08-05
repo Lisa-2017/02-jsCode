@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 字符串是用数组的方式存储,通过length可以访问长度,通过下标可以访问其中的某一个字符,由于字符串是不可能被改变的,所以不能给其中的某一个字符进行修改,当给整个字符串重新再赋值的时候,就是重新在内存中开辟了一个空间进行存储
+			
+			var str = '天气很好';
+			console.log(str.length);
+			for(var i =0; i<str.length;i++){
+				console.log(str[i]);
+			}
+			console.log(str[2]);
+			
+			str[0] = 'O(∩_∩)O哈哈~'; //无法改变字符串中的某个字符
+			console.log(str[0]);
+			
+			str = '嗯嗯';  //开辟了新空间重新赋值
+			console.log(str);
+		</script>
+	</body>
+</html>

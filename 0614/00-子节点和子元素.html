@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	
+	<body>
+		<div id="box">
+			<h1 id="h1" title="你是谁">周</h1>
+			<ul>
+				<li>歌曲</li>
+				<li>歌曲</li>
+				<li>歌曲</li>
+				<li>歌曲</li>
+				<li>歌曲</li>
+			</ul>
+			<h2>方文山</h2>
+		</div>
+		
+		<script type="text/javascript">
+			var box = document.getElementById('box');
+			
+			for(var i = 0;i<box.childNodes.length;i++){
+				// childNodes 子节点   打印节点属性
+				// console.log(box.childNodes[i].nodeType+'<===>'+box.childNodes[i].nodeName+'<===>'+box.childNodes[i].nodeValue);
+				
+				
+				
+				//利用 childNodes 和节点属性获取标签
+				// 获取标签且只获取h1标签,通过判断nodeType==1和nodeName=='H1'  不存在兼容问题
+				// if(box.childNodes[i].nodeType==1 && box.childNodes[i].nodeName=='H1'){
+				// 	console.log(box.childNodes[i])
+				// }
+				
+				//children	获取标签(高版本中只能获取标签，低版本中能获取标签和注释，如果只要标签则需要判断)
+				console.log(box.children[i]);
+			}			
+			
+			// 获取对象的属性节点
+			// console.log(h1.getAttributeNode('title'));
+			// console.log(h1.getAttrbuteNode('title').nodeName);
+			// console.log(h1.getAttributeNode('title').nodeType);
+//			for(var k in h1){
+//				console.log(k.nodeType);
+//			}
+		</script>
+	</body>
+</html>

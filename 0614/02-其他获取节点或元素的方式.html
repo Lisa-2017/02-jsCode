@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box">
+			<h1 id="h1" title="你是谁">周</h1>
+			<ul id="list">
+				<li>歌曲</li>
+				<li>歌曲</li>
+				<li>歌曲</li>
+				<li>歌曲</li>
+				<li>歌曲</li>
+			</ul>
+			<h2>方文山</h2>
+		</div>
+		
+		<script type="text/javascript">
+			var list  =document.getElementById('list');
+			console.log(list.firstChild);// 第一个子节点是换行  #text
+			console.dir(list);// 目录的形式查看list节点
+			console.log(list.firstElementChild);// 第一个子元素 第一个li标签
+			
+			
+		</script>
+	</body>
+</html>

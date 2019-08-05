@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.yellow{
+				background-color: #FFFF00;
+			}
+			.red{
+				background-color: red;
+			}
+			.pink{
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		
+		
+		<button id="btn">添加列表</button>
+		<div id ="box"></div>
+		
+		<script type="text/javascript">
+			// 第二种方式添加节点
+			var btn=document.getElementById('btn');
+			var box = document.getElementById('box');
+			var arr = ['三国','水壶','石头记','还有什么'];
+			// btn.onclick = function(){
+			// 	var str = '<div>hhhh</div>';
+			// 	box.innerHTML = str; //将字符串添加到dom树上
+			// }
+			
+			
+			// 创建隔行变色
+			// var str = '<ul id="list">';
+			// btn.onclick = function(){
+			// 	for(var i =0;i<arr.length;i++){
+			// 		str+='<li>'+arr[i]+'</li>';
+			// 	}
+			// 	str+='</ul>';
+			// 	box.innerHTML = str;
+			// 	var list = document.getElementById('list');
+			// 	for(var i=0;i<list.children.length;i++){
+			// 		i%2==0? list.children[i].style.backgroundColor='red':list.children[i].style.backgroundColor='yellow';
+			// 	}
+			// }
+			
+			// 第三种方式创建对象
+			btn.onclick = function(){
+				//创建ul对象
+				var ul = document.createElement('ul');
+				// 设置对象的属性
+				ul.id = 'list';
+				ul.title = '这是列表';
+				//追加到box的子元素
+				box.appendChild(ul);
+				//循环创建li
+				for(var i=0;i<arr.length;i++){
+					var li = document.createElement('li');
+					li.innerText =arr[i];
+					li.num = i;
+					if(i%2==0){
+						li.className='yellow';
+						// li.style.backgroundColor='yellow';
+					}else{
+						li.className='red';
+						// li.style.backgroundColor='red';
+					}			
+					li.onmouseover = function(){
+						this.className='pink';
+						// this.style.backgroundColor = 'pink';
+					}
+					li.onmouseout = function(){
+						this.num%2 ==0?this.className='yellow':this.className='red';
+						// this.style.backgroundColor = 'green';
+					}
+					ul.appendChild(li);	
+				}
+			}
+		</script>
+		
+		
+		
+	</body>
+</html>

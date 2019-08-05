@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box">
+			<h1 id="h1" title="你是谁">周</h1>
+			<ul id="list">
+				哈哈
+				<!--注释1-->
+				<!--注释2-->
+				<!--注释3-->
+				<li>歌曲1</li>
+				<li>歌曲2</li>
+				<li>歌曲3</li>
+				<li>歌曲4</li>
+				<li>歌曲5</li>
+			</ul>
+			<h2>方文山</h2>
+		</div>
+		
+		<script type="text/javascript">			
+			var list = document.getElementById('list');
+			
+			/**
+			 * 封装获取元素的第一个子节点
+			 * @param {元素对象} obj
+			 */
+			function getFirstElementChild(obj){
+				// 若第一个子元素为真,表示用户使用的高级浏览器可以解析该属性,则使用firstElementChild来获取第一个子元素.
+				if(obj.firstElementChild){  
+					return obj.firstElementChild;
+				}else{ //否则 ,就循环所有的子节点，判断其`.nodeType`属性是否=1.（节点.nodeType=1表示该节点是标签元素)
+					var nodeE = obj.firstChild;  //将第一个子节点赋值给变量nodeE
+					
+					// 如果obj没有子节点,obj.firstChild获取就是null
+					//如果nodeE中有数据,nodeE就是true,再判断&&后面的条件
+					//如果nodeE中是null,nodeE就是false,不再判断&&后面的条件
+					while(nodeE.nodeType !=1){	//循环所有子节点,当子节点的nodeType不等于1时，进入循环
+						nodeE = nodeE.nextSibling; //将下一个兄弟节点赋值给变量nodeE,直到找到第一个子元素,循环结束
+					}
+					return nodeE; // 返回第一个子节点==第一个子元素子.
+				}
+			}
+
+			
+			// 调用封装好的方法
+			var ele = getFirstElementChild(list);
+			console.log(ele); //控制台输出<li>歌曲1</li>
+		</script>
+	</body>
+</html>

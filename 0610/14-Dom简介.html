@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button id='btn'>按钮</button>
+		<script type="text/javascript">
+			
+
+			var btn = document.getElementById('btn'); //建议变量名=id名
+			console.dir(btn);  //button#btn  __proto__:HTMLButtonElement
+			console.dir(btn.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__);
+			// HTMLButtonElement ==> HTML Element  ==> Element  ==> Node  ==> EventTarget  ==>  Object  ==> null
+			btn.onclick = fn;
+			function fn(){
+				alert('被点击了');
+			}
+		</script>
+	</body>
+</html>

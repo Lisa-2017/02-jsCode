@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="input" id="" value="" />
+		<input type="text" name="input"id="" value="" />
+		<input type="button" id="btn" name="" value="按钮"/>
+		<input type="text" name="input"id="" value="" />
+		<input type="text" name="input"id="" value="" />
+		<script type="text/javascript">
+			var btn = document.getElementById('btn');
+			var inputs =  document.getElementsByTagName('input');
+			btn.onclick = function(){
+				for(var i = 0;i<inputs.length;i++){
+					//判断input类型不是按钮的
+					if(inputs[i].type != 'button'){
+						// 设置类型为复选框
+						inputs[i].type ='checkbox';
+					}
+				}
+			}
+			
+			// var inputs =  document.getElementsByName('input');
+			// btn.onclick = function(){
+			// 	for(var i = 0;i<inputs.length;i++){
+			// 		inputs[i].type ='checkbox';
+			// 	}
+			// }
+		</script>
+	</body>
+</html>

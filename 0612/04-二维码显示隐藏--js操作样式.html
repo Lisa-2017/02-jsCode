@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 50px;
+				height: 50px;
+				background: url(img/bgs.png) no-repeat -159px -51px;
+				position: fixed;
+				right: 20px;
+				top: 50%;
+				margin-top: -25px;
+				cursor: pointer;
+			}			
+			img{
+				width: 120px;
+				height: 120px;
+				position: absolute;
+				right: 60px;
+				background: url;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img src="img/456.png" alt="" id="ercode">
+		</div>
+		<script type="text/javascript">
+			
+			// js直接操作样式
+			var box = document.getElementById('box');
+			var ercode = document.getElementById('ercode');
+			box.onmouseover = function(){
+				this.style.backgroundPositionX = '-220px';
+				ercode.style.display = 'block';
+			}
+			box.onmouseout = function(){
+				this.style.backgroundPositionX = '-159px';
+				ercode.style.display = 'none';
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button id = 'btn'>读取</button>
+		<div id='box'>这是一个盒子</div>
+		<span id ='sp'></span>
+		<script type="text/javascript">
+			var btn = document.getElementById('btn');
+			var box = document.getElementById('box');
+			var sp = document.getElementById('sp');
+			
+			
+			/**
+			 * 封装读取元素中的文本内容--兼容
+			 * @param {元素对象} obj
+			 */
+			function getTextContent(obj){
+				if(obj.textContent != undefined){
+					return obj.textContent;
+				}else{
+					return obj.innerText;
+				}
+			}
+			
+			
+			/**
+			 * 封装设置元素中的内容--兼容
+			 * @param {元素对象} obj
+			 * @param {文本内容} text
+			 */
+			function setTextContent(obj,text){
+				if(obj.textContent != undefined){
+					obj.textContent = text;
+				}else{
+					obj.innerText = text;
+				}
+			}
+			
+			// 注册事件
+			btn.onclick= function(){
+				var boxtext = getTextContent(box); //获取box的文本内容
+				setTextContent(sp,boxtext);  //为span设置文本内容
+			}
+		</script>
+	</body>
+</html>

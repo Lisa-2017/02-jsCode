@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<a href="www.baidu.com" id="a1">百度</a>	
+		<script type="text/javascript">
+			
+			// 阻止超链接跳转:return false 到事件源
+			
+			// 方法一 在匿名函数中写return
+			var a1 = document.getElementById('a1');
+			a1.onclick = function(){
+				return false; //阻止标签的默认行为
+			}
+			
+			// 方法二
+			// 在行内写:onclick=" return false "
+			
+			
+			// 方法三
+			function sum(){
+				alert('sum函数');
+				return false;
+			}			
+			a1.onclick = function(){
+				// sum();  //将sum函数中的false返回到匿名函数中后匿名函数并未再次返回false,所以不能阻止跳转
+				return sum();
+			}
+			
+			// 方法四
+			// 在行内写:onclick=" return sum() "
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>浏览器滚动事件</title>
+		<style type="text/css">
+			.header{
+				height: 100px;
+				background-color: #FF0000;
+			}
+			.nav{
+				
+				width: 100%;
+				height: 50px;
+				background-color: yellow;
+			}
+			.main{
+				width: 1200px;
+				height: 600px;
+				margin: 10px auto;
+				background-color: green;
+			}
+			.pof{
+				position: fixed;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header" id="header">顶部</div>
+		<div class="nav" id="nav">导航</div>
+		<div class="main"></div>
+		<div class="main"></div>
+		<div class="main"></div>
+		
+		<script type="text/javascript">
+			var nav = document.getElementById('nav');
+			var header = document.getElementById('header');
+			window.onscroll = function(){				
+			// window.onscroll = functoin() {
+				//当垂直滚动的距离大于等于100px时,nav天假pof类名
+				if( getScrolTopAndLeft().top>= header.offsetHeight){
+					 nav.className = 'nav pof';
+				}else{
+					nav.className = 'nav';
+				}				
+				
+				// Window.scrollTop  html.scrollTop body.scrollTop
+				// 兼容性
+				// console.log(getScrolTopAndLeft()[0]); //输出垂直滚动条top值
+				// console.log(getScrolTopAndLeft().top); //输出垂直滚动条top值
+				
+			}
+			//兼容性封装获取滚动距离
+			function getScrolTopAndLeft(){
+				//数组方式
+				// var top=window.scrollTop || document.body.scrollTop || document.documentElement.scrolllTop;
+				// var left=window.scrollLeft || document.body.scrollLeft || document.documentElement.scrolllLeft;				
+				// return [top,left];  
+				
+				//字面量对象的方式
+				return {
+					top: window.scrollTop || document.body.scrollTop || document.documentElement.scrollTop,
+					left:window.scrollLeft || document.body.scrollLeft || document.documentElement.scrollLeft
+				};
+			}
+		</script>
+		
+	</body>
+</html>

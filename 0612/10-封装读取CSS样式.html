@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width:500px;
+				height: 260px;
+				background-color: #7FFFD4;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<button id='btn'>读取</button>
+		<div id='box'></div>
+		<script type="text/javascript">
+			var btn =document.getElementById('btn');
+			var box = document.getElementById('box');
+			/**
+			 * @param {元素对象} obj
+			 * @param {元素属性} pro
+			 */
+			function getStylePro(obj,pro){
+				if(window.getComputedStyle){
+					return getComputedStyle(obj)[pro];
+				}else{
+					return box.currentStyle[pro];
+				}
+			}
+			btn.onclick = function(){				
+				console.log(getStylePro(box,'height'));
+			}
+</script>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="btn">按钮</button>
+		<p>这是p标签</p>
+		<p>这是p标签</p>
+		<p>这是p标签</p>
+		<p>这是p标签</p>
+		<p>这是p标签</p>
+		<p>这是p标签</p>
+		<p>这是p标签</p>
+		<p>这是p标签</p>
+		<p>这是p标签</p>
+		<p>这是p标签</p>
+		<script type="text/javascript">
+			var btn =document.getElementById('btn');
+			var ps = document.getElementsByTagName('p');  //通过标签获取元素对象数组数组
+			console.log(ps); // 一组集合
+			btn.onclick = function(){					  // 为按钮注册事件
+				for(var i = 0;i<ps.length;i++){			  // 遍历每个数组
+					ps[i].innerText = 'p段落'+i+'的内容被修改了';
+				}
+			}
+			
+			// 相当于访问集合ps中其中一个元素
+			var p = document.getElementsByTagName('p')[0];
+			console.log(p); //输出第一个p标签对象
+		</script>
+	</body>
+</html>

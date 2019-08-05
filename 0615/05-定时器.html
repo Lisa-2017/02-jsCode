@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button>1</button>
+		<button>2</button>
+		<button>3</button>
+		<button>4</button>
+		
+		<script type="text/javascript">
+			var btns = document.getElementsByTagName('button');
+			var timer = null ;
+			var timer2 = null;
+			// 开启单次定时器
+			btns[0].onclick = function(){
+				timer = setTimeout(function(){alert('开启单次定时器')},1000);
+				console.log(timer);
+			}
+			
+			//关闭单次定时器
+			btns[1].onclick = function(){
+				clearTimeout(timer);
+			}
+			
+			
+			// 开启多次定时器
+			btns[2].onclick = function(){
+				timer2 = setInterval(function(){alert('开启多次定时器')},4000);
+				console.log(timer2);
+			}
+			
+			//关闭多次定时器
+			btns[3].onclick = function(){
+				clearInterval(timer2);
+			}
+			
+		</script>
+	</body>
+</html>

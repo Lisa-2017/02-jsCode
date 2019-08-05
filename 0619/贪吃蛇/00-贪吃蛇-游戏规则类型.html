@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			//一、地图类型
+			(function(){
+				//地图构造函数
+				function MapG(width,height,bgColor){
+					this.width = width;
+					this.height = height ;
+					this.bgColor = bgColor;
+				}
+				// 地图公用的方法--写在原型对象中
+				MapG.prototype.init = function(){
+					var divMap = document.createElement('div');
+					divMap.style.width = this.width+'px';
+					divMap.style.height = this.height+'px';
+					divMap.style.backgroundColor = this.bgColor;
+					divMap.id = 'divMap';
+					divMap.style.position = 'relative';
+					// 将地图追加到body的Dom树上
+					document.body.appendChild(divMap);
+				}
+				// 将地图公布到window中
+				window.MapG = MapG;
+			}());
+				
+			// 二、食物类型	
+			(function(){
+				//食物构造函数
+				function Food(width,height,bgColor){
+					this.width = width;
+					this.height = height ;
+					this.bgColor = bgColor;
+					// x,y的坐标
+					this.x =0;
+					this.y = 0;
+				}
+				//食物公用的方法--
+				Food.prototype.init = function(){
+					var divMap = document.getElementById('divMap');
+					var divFood = document.createElement('div');
+					divFood.style.width = this.width+'px';
+					divFood.style.height = this.height +'px';
+					divFood.style.backgroundColor = this.bgColor;
+					divFood.style.position = 'absolute';
+					// 随机的横纵坐标 （ 计算this.x值和this.y值)
+					this.x = parseInt( Math.random() * (divMap.offsetWidth - this.width) );
+					this.y = parseInt( Math.random() * (divMap.offsetHeight - this.height) );
+					// 将随机坐标*食物大小赋值给left和top
+					divFood.style.left = this.x +'px';
+					divFood.style.top = this.y +'px';
+					
+					divMap.appendChild(divFood);
+				
+				}
+				//将Food 公布到window
+				window.Food = Food;
+			}());
+			
+			// 三 、蛇类型
+			(function(){
+				//
+				var elements =[];
+				//蛇的构造函数
+				function Snake(width,height){
+					this.width = width;
+					this.height = height;
+					this.snBody=[{x:3,y:2,bgColor:'green'},{x:2,y:2,bgColor:'greenyellow'},{x:1,y:2,bgColor:'yellow'}];
+				}
+				// 蛇的公用方法
+				Snake.prototype.init = function(){
+					//创建之前先删除旧的蛇
+					remove();
+					// 这个蛇读取每个div时，要遍历snBody数组,还要记得坐标计算时候的下标，并赋值给left和top
+					for(var i = 0 ; i<this.snBody.length;i++){
+						var divMap = document.getElementById('divMap');
+						var divSnake = document.createElement('div');
+						divSnake.style.width = this.width+'px';
+						divSnake.style.height = this.height+'px';
+						divSnake.style.backgroundColor = this.snBody[i].bgColor;
+						divSnake.style.position = 'absolute';
+						
+						
+						divSnake.style.left = this.width*this.snBody[i].x+'px';
+						divSnake.style.top = this.height*this.snBody[i].y+'px';
+						
+						divMap.appendChild(divSnake);
+						//将蛇的div存到数组中
+						elements.push(divSnake);
+					}
+				}
+				// 蛇的移动方法
+				Snake.prototype.move = function(){
+					//倒叙循环snBody数组,将蛇中的坐标赋给蛇尾
+					for(var i=this.snBody.length-1; i > 0 ;i--){
+						this.snBody[i].x = this.snBody[i-1].x;
+						this.snBody[i].y = this.snBody[i-1].y;
+					}
+					// 将蛇头横坐标自增1
+					this.snBody[0].x +=1;
+				}
+				// 删除旧蛇
+				function remove(){
+					var divMap = document.getElementById('divMap');
+					//遍历elements数组
+					for(var i= 0 ;i<elements.length ; i++){
+						divMap.removeChild(elements[i]);
+					}
+					// elements=[];
+					elements.splice(0);
+				}
+				// 将Snake公布到window中
+				window.Snake = Snake;
+				
+			}());
+			
+			// 四、游戏类型
+			(function(){
+				//游戏构造函数
+				function Game(){
+					this.mapG = new MapG(600,300,'pink');
+					this.mapG.init();
+					this.food = new Food(20,20,'red');
+					this.food.init();
+					this.snake = new Snake(20,20);
+					this.snake.init();
+				}
+				//游戏规则
+				Game.prototype.rule = function(){
+					var gameThis= this;
+					var timer = setInterval(function(){
+						gameThis.snake.move();
+						gameThis.snake.init();
+					},200)
+				}
+				
+				window.Game = Game
+			}());
+			
+			
+			// 实例化对象
+			var game = new Game();
+			game.rule();
+		</script>
+	</body>
+</html>

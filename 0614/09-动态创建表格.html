@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 330px;
+				height: 170px;
+				margin: 100px auto 0;
+			}
+			.addBtn{
+				width:100px;
+				height: 30px;
+				margin-bottom: 10px;
+			}
+			table{
+				border: 1px solid #ccc;
+				border-spacing: 0;
+				border-collapse: collapse; /*实现1px边框*/
+			}
+			th,td{
+				border: 1px solid #ccc;
+				padding: 5px 15px;
+				text-align: center;
+			}
+			th{
+				background-color: skyblue;
+				color: #fff;
+			}
+			.cover{				
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0,0,0,.5);
+				position: absolute;
+				left:0;
+				top:0;
+				display: none;
+			}
+			.dialog{
+				width: 430px;
+				height: 250px;
+				background-color: #fff;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-left: -215px;
+				margin-top: -125px;
+				display: none;
+			}
+			.h3{
+				background-color: #eee;
+				height: 35px;
+				line-height: 35px;
+				text-align: center;
+			}
+			.dialog div{
+				padding: 20px 0 0 20px;
+			}
+			.dialog div input{
+				width: 300px;
+				height: 30px;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+				padding: 0 2px;
+			}
+			.submit{
+				width: 100px;
+				height: 30px;
+				display: block;
+				margin: 30px auto 0;
+			}
+			.close{
+				position: absolute;
+				top:6px;
+				right: 20px;
+				display: block;
+				width: 20px;
+				height: 20px;
+				line-height: 20px;
+				text-align: center;
+				border: 1px solid #ccc;
+			}
+			.close:hover{
+				color: red;
+				border-color: red;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<button class='addBtn' id="addBtn">添加数据</button>
+			<table cellpadding="0" cellspacing="0">
+				<thead>
+					<tr>
+						<th>电影名称</th>
+						<th>领衔主演</th>
+						<th>已完成</th>
+					</tr>
+				</thead>
+				<tbody id="tbody">
+					<tr>
+						<td>流浪地球</td>
+						<td>吴京</td>
+						<td><a href="##">删除</a></td>
+					</tr>
+					<tr>
+						<td>电影</td>
+						<td>电影</td>
+						<td><a href="##">删除</a></td>
+					</tr>
+					<tr>
+						<td>电影</td>
+						<td>电影</td>
+						<td><a href="##">删除</a></td>
+					</tr>
+				</tbody>
+			</table>
+			
+		</div>
+		<div class="cover" id="cover">	</div>
+		<div class="dialog" id="dialog">
+			<form action="" method="">
+				<h3 class="h3">添加数据</h3>
+				<div>
+					<label for="text1">电影名称:</label>
+					<input type="text" name="" id="text1" placeholder="请输入电影名称">
+				</div>
+				<div>
+					<label for="text2">领衔主演:</label>
+					<input type="text" name="" id="text2" value="xxx老师">
+				</div>				
+				<input type="submit" name="" id="submit" value="提交" class="submit" />
+				<span class="close" id="closeBtn"> X </span>
+			</form>
+		</div>
+	
+	<script type="text/javascript">
+		var tbdy = document.getElementById('tbody');
+		var aArr = tbdy.getElementsByTagName('a');
+		var cover = document.getElementById('cover');
+		var dialog = document.getElementById('dialog');
+		var addBtn = document.getElementById('addBtn');
+		var text1 = document.getElementById('text1');
+		var text2 = document.getElementById('text2');
+		var Submit = document.getElementById('submit');
+		var closeBtn = document.getElementById('closeBtn');
+		
+		
+		//循环绑定a标签
+		for( var i =0;i<aArr.length ;i++){
+			aArr[i].onclick = function(){
+					//this.parentNode.parentNode;// 父元素的父元素
+				tbdy.removeChild(this.parentNode.parentNode); //被删除元素的父元素调用removeChild方法.
+			}
+		}
+		
+		// 单击添加数据
+		addBtn.onclick = function(){
+			cover.style.display = 'block';
+			dialog.style.display = 'block'
+		}
+		// 单击关闭
+		closeBtn.onclick = function(){
+			cover.style.display = 'none';
+			dialog.style.display = 'none'; 
+		}
+		
+		//单击提交
+		Submit.onclick = function(){
+			var str01 = text1.value.trim(); // 获取电影名称
+			var str02 = text2.value.trim(); // 获取主演
+			cover.style.display = 'none';
+			dialog.style.display = 'none';
+			
+			//两个输入框都不能为空的时候
+			if(str01 && str02){
+				addMoveInfo(str01,str02);
+			}else{
+				alert('电影名称和领衔主演不能为空');
+			}
+		}
+		
+		
+		// 封装添加影片信息函数
+		function addMoveInfo(str01,str02){
+			// 创建tr
+			var tr = document.createElement('tr');
+			tbdy.appendChild(tr);			
+			// 循环创建三个td
+			for(var i=0;i<3;i++){
+				var td = document.createElement('td');
+				if(i ==0 ){
+					td.innerText = str01;
+				}else if(i==1){
+					td.innerText = str02;
+				}else{
+					// 创建删除标签
+					var a = document.createElement('a');
+					a.href='##';
+					a.innerText ='删除';
+					td.appendChild(a);
+					a.onclick = function(){
+						tbdy.removeChild(this.parentNode.parentNode); //被删除元素
+					}
+				}				
+				tr.appendChild(td);
+			}
+		}
+	</script>
+	
+	</body>
+</html>

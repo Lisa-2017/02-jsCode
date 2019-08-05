@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.red{
+				background-color: #FF0000;
+			}			
+			.yellow{
+				background-color: yellow;
+			}
+			.pink{
+				background-color: pink;
+			}
+			.green{
+				background-color: yellowgreen;
+			}			
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+		</ul>
+		<script type="text/javascript">
+			// 鼠标移入隔行变色，先注册事件再分别判断,js操作class属性
+			// 循环列表==>先设置基本隔行变色同时注册2个事件==>分别判断奇偶==>设置鼠标移入移除时候的背景色
+			var lis = document.getElementsByTagName('li');
+			var num=[];
+			for(var i = 0; i<lis.length;i++){
+				i%2==0? lis[i].className='red':lis[i].className='yellow';
+				lis[i].num = i;				
+				lis[i].onmouseover = function(){
+					this.num % 2 == 0 ? this.className='pink':this.className='green';
+				}
+				lis[i].onmouseout = function(){
+					this.num % 2 == 0 ? this.className='red':this.className='yellow';
+				}
+			}
+		</script>
+	</body>
+</html>

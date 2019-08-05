@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// console.dir(String);
+			var str01 = '王一博跳舞真帅';
+			console.log(str01.charAt(2));// .charAt(索引)  返回字符串中的第n+1个字符,超出索引结果为空
+			console.log(str01.charCodeAt(3));//.charCodeAt(索引) 返回字符串中的第n个字符的unicode编码
+			console.log(str01.concat('完全赞同','哈哈'));//.concat(字符串1，字符串2) 连接字符串；返回值是拼接之后的新字符串
+			console.log(str01.indexOf('一',0));//.indexOf(要找的字符串,从某个位置开始的索引)；检索字符串;返回值是这个字符串的索引值,没找到返回-1;
+			console.log(str01.lastIndexOf('博',5));// 返回2  .lastIndexOf(要找的字符串，从某个位置开始的索引)；从后向前检索一个字符串，但是索引仍然是从左向右的方式，找不到返回-1;
+			console.log(str01.replace('王一博','王俊凯'));// .replace("原来的字符串","新的字符串");返回的是修改过的字符串
+			console.log(str01.slice(2,5));//.slice(开始的索引,结束的索引); 从索引的起始位置开始提取,到索引的前一个结束,并返回这个提取后的字符串;;抽取一个子串;
+			console.log(str01.substring(2,4));//substring(开始的索引,结束的索引),不包含结束的索引的字符串,返回截取后的字符串
+			console.log(str01.substr(0,3));//.substr(开始的索引,个数);返回的是截取后的新的字符串;
+			
+			
+			var str02 = '王一博|王俊凯|胡歌'
+			console.log(str02.split('|')); //根据某一个字符进行切割,返回切割后的数组
+			
+			var str03 = 'AbCdEfGhIjk'
+			console.log(str03.toLocaleLowerCase()); //转小写
+			console.log(str03.toLocaleUpperCase()); //转大写
+			
+			var str04 = '   双鱼座   ';
+			console.log(str04.length);
+			console.log(str04.trim().length); //去掉两端空格后的字符串长度
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

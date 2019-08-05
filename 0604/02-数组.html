@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+		// 创建数组方式一
+			var arr=[8,'哈哈',true,new Object(),null];
+			console.log(arr[1]);  //访问第2个数组元素						
+			arr[1]='网瘾少年';     //修改素组元素
+			arr.length=20;
+			console.log(arr);
+			console.log(arr.length);   //访问数组长度
+		
+		// 创建数组方式二
+			var arr02 = new Array(8,'哈哈',true,new Object(),null);
+			arr02[1]='呵呵';
+			console.log(arr02);
+			console.log(arr02[1]);
+			console.log(arr02.length);
+		// 创建数组方式三
+			var arr03 = new Array(10);
+			arr03[0] = '88';
+			console.log(arr03);
+			
+		</script>
+	</body>
+</html>

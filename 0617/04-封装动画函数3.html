@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 100px;
+				height: 100px;
+				background-color: #FF7F50;
+				position: absolute;
+				top: 100px;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<button >移动到400</button>
+		<button >移动到800</button>
+		<div id="box"></div>
+		<script type="text/javascript">
+			var btns = document.getElementsByTagName('button');
+			var box = document.getElementById('box');
+			btns[0].onclick = function(){
+				myAnimate(box,400);
+			}
+			btns[1].onclick = function(){
+				myAnimate(box,800);
+			}
+			
+			function myAnimate(obj,target){
+				clearInterval(obj.timer);
+				obj.timer = setInterval(function(){
+					var step = 7;
+					var current = obj.offsetLeft;
+					step = target-current>0 ? step:-step;
+					if( Math.abs(target-current) > Math.abs(step) ){
+						current = current+step;
+						obj.style.left = current+'px';
+					}else{
+						clearInterval(obj.timer);
+						obj.style.left = target+'px';
+					}
+				},30);
+			}
+		</script>
+	</body>
+</html>

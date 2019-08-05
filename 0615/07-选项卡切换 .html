@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 1040px;
+				height: 520px;
+				margin: 100px auto 0;
+			}
+			.box ul {
+				width: 333px;
+				border: 1px solid #ccc;
+				overflow: hidden;
+			}
+			.box ul li{
+				list-style: none;
+				float: left;
+				position: relative;
+			}
+			.box ul li a{
+				display: inline-block;
+				width: 80px;
+				height: 31px;
+				line-height: 31px;
+				text-align: center;
+				border-top: 3px solid transparent;
+				color: #333;
+				text-decoration: none;
+			}
+			.box ul li span{
+				height: 31px;
+				line-height: 31px;
+				text-align: center;
+				color: #333;
+			}
+			
+			.box .current{
+				border-color: red;
+			}
+			.box div{
+				display: none;
+				border-top: 1px solid #ccc;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="box" id="box">
+			<ul id="list">
+				<li><a href="" class="current">女士精品</a><span>|</span></li>
+				<li><a href="">国妆品牌</a><span>|</span></li>
+				<li><a href="">男士精品</a><span>|</span></li>
+				<li><a href="">清洁用品</a></li>
+			</ul>
+			
+			<div style="display: block;"><img src="img/01.jpg" alt=""></div>
+			<div><img src="img/02.jpg" alt=""></div>
+			<div><img src="img/03.jpg" alt=""></div>
+			<div><img src="img/04.jpg" alt=""></div>
+		</div>
+		<script type="text/javascript">
+			var list = document.getElementById('list');
+			var alis = list.getElementsByTagName('a');
+			var box = document.getElementById('box');
+			var divs = box.getElementsByTagName('div');
+			
+			for(var i =0;i<alis.length;i++){
+				alis.num = i;
+				alis[i].onmouseover = function(){
+					for(var j =0; j<alis.length ;j++){
+						divs[j].style.display = 'none';
+						alis[j].className = '';
+					}					
+					this.className='current';
+					divs[this.num].style.display = 'block';s
+					// divs[this.num].style.display = 'block';
+					
+				}
+			}
+		</script>
+	</body>
+</html>

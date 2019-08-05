@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button id='btn'>按钮</button>
+		
+		<script type="text/javascript">
+			//封装  通过id获取dom 
+			// var btn = document.getElementById('btn');
+			function $Id(obj){
+				return document.getElementById(obj);
+			}			
+			// console.log( $Id('btn') );  // 控制台输出  <button id='btn'>按钮</button>
+			var btn = $Id('btn') ;
+			
+			
+			// 封装  给对象添加事件监听
+			
+			function addEvent(obj,eventType,fn){
+				if(obj.addEventListener){
+					obj.addEventListener(eventType,fn,false); //只有高级浏览器可以使用
+				}else{
+					obj.attachEvent('on'+eventType,fn);
+				}
+			}
+			
+			//调用
+			addEvent(btn,'click',function(){
+				alert('你是谁');
+			});
+			addEvent(btn,'click',function(){
+				alert('我是谁');
+			});
+			
+		</script>
+		
+	</body>
+</html>

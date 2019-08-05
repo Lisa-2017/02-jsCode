@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box">
+			<h1 id="h1" title="你是谁">周</h1>
+			<ul id="list">
+						哈哈
+				<!--注释1-->
+				<!--注释2-->
+				<!--注释3-->
+				<li>歌曲1</li>
+				<li>歌曲2</li>
+				<li>歌曲3</li>
+				<li>歌曲4</li>
+				<li>歌曲5</li>
+				<!--注释1-->
+				<!--注释2-->
+				<!--注释3-->
+				嘿嘿
+			</ul>
+			<h2>方文山</h2>
+		</div>
+		
+		<script type="text/javascript">
+			var list  =document.getElementById('list');
+			/**
+			 * 封装最后一个子元素
+			 * @param {元素对象} obj
+			 */
+			function getLastElementChild(obj){
+				if(obj.lastElementChild){
+					return obj.lastElementChild;
+				}else{
+					var nodeE = obj.lastChild;
+					// 如果obj没有子节点,obj.lastChild 获取就是null;
+					//如果nodeE中有数据,nodeE就是true,再判断&&后面的条件;
+					//如果nodeE中是null,nodeE就是false,不再判断&&后面的条件.
+					while(nodeE && nodeE.nodeType!=1 ){ 
+						nodeE = obj.previousSibling; //将上一个兄弟节点赋值给变量nodeE,直到找到最后一个子元素,循环结束
+					}
+					return nodeE;
+				}
+			}
+			
+			//调用并输出 最后一个子元素
+			console.log(getLastElementChild(list));  //控制台输出 <li>歌曲5</li>
+		</script>
+	</body>
+</html>

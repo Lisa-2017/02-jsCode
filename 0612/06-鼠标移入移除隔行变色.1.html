@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+		</ul>
+		<script type="text/javascript">
+			// 鼠标移入隔行变色，先判断再分别注册事件,js操作css样式
+			// 循环列表==>判断奇偶==>设置基本的隔行变色+鼠标移入移除时候的背景色
+			var lis = document.getElementsByTagName('li');
+			for(var i = 0; i<lis.length;i++){
+				if( i%2 == 0 ){
+					lis[i].style.background='red';
+					lis[i].onmouseover = function(){
+						this.style.background='pink';					
+					}
+					lis[i].onmouseout = function(){
+						this.style.background='red';
+					}
+				}else{
+					lis[i].style.background='yellow';
+					lis[i].onmouseover = function(){
+						this.style.background='green';					
+					}
+					lis[i].onmouseout = function(){
+						this.style.background='yellow';
+					}
+				}
+			}
+			
+		</script>
+	</body>
+</html>

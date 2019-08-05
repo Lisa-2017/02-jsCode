@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button id='btn'>按钮</button>
+		<ul id="list">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+		
+		<script type="text/javascript">
+			var btn=document.getElementById('btn');
+			var list = document.getElementById('list');
+			btn.onclick = function(){
+				var li06 = document.createElement('li');
+				li06.innerText = '6';
+				// list.appendChild(li06);  // 从最后追加节点
+				// list.insertBefore(li06,list.firstElementChild);//插入目标节点
+				// list.replaceChild(li06,list.firstElementChild); //替换目标节点
+				list.removeChild(list.firstElementChild) //删除目标节点
+			}
+			
+		</script>
+	</body>
+</html>

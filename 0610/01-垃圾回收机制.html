@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var jay = {
+				name :'周'
+			};
+			console.log(jay);   //{name: "周"}
+			var jolin = {
+				name:'蔡'
+			};			
+			jay = jolin;// 前面创建的周就在内存中被闲置了
+			console.log(jay);  //{name: "蔡"}
+			console.log(jolin);  //{name: "蔡"}
+			var obj = {
+				name:'黄'
+			};
+			console.log(obj);  //{name: "黄"}
+			obj= null;  //垃圾被回收			
+			console.log(obj);  //null
+			
+		</script>
+	</body>
+</html>

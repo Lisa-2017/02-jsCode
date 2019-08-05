@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 330px;
+				height: 170px;
+				margin: 100px auto 0;
+			}
+			.addBtn{
+				width:100px;
+				height: 30px;
+				margin-bottom: 10px;
+			}
+			table{
+				border: 1px solid #ccc;
+				border-spacing: 0;
+				border-collapse: collapse; /*实现1px边框*/
+			}
+			th,td{
+				border: 1px solid #ccc;
+				padding: 5px 15px;
+				text-align: center;
+			}
+			th{
+				background-color: skyblue;
+				color: #fff;
+			}
+			.cover{				
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0,0,0,.5);
+				position: absolute;
+				left:0;
+				top:0;
+				display: none;
+			}
+			.dialog{
+				width: 430px;
+				height: 250px;
+				background-color: #fff;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-left: -215px;
+				margin-top: -125px;
+				display: none;
+			}
+			.h3{
+				background-color: #eee;
+				height: 35px;
+				line-height: 35px;
+				text-align: center;
+			}
+			.dialog div{
+				padding: 20px 0 0 20px;
+			}
+			.dialog div input{
+				width: 300px;
+				height: 30px;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+				padding: 0 2px;
+			}
+			.submit{
+				width: 100px;
+				height: 30px;
+				display: block;
+				margin: 30px auto 0;
+			}
+			.close{
+				position: absolute;
+				top:6px;
+				right: 20px;
+				display: block;
+				width: 20px;
+				height: 20px;
+				line-height: 20px;
+				text-align: center;
+				border: 1px solid #ccc;
+			}
+			.close:hover{
+				color: red;
+				border-color: red;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<button class='addBtn' id="addBtn">添加数据</button>
+			<table cellpadding="0" cellspacing="0">
+				<thead>
+					<tr>
+						<th>电影名称</th>
+						<th>领衔主演</th>
+						<th>已完成</th>
+					</tr>
+				</thead>
+				<tbody id="tbody">
+					<tr>
+						<td>流浪地球</td>
+						<td>吴京</td>
+						<td><a href="##">删除</a></td>
+					</tr>
+					<tr>
+						<td>电影</td>
+						<td>电影</td>
+						<td><a href="##">删除</a></td>
+					</tr>
+					<tr>
+						<td>电影</td>
+						<td>电影</td>
+						<td><a href="##">删除</a></td>
+					</tr>
+				</tbody>
+			</table>
+			
+		</div>
+		<div class="cover" id="cover">	</div>
+		<div class="dialog" id="dialog">
+			<form action="" method="">
+				<h3 class="h3">添加数据</h3>
+				<div>
+					<label for="text1">电影名称:</label>
+					<input type="text" name="" id="text1" placeholder="请输入电影名称">
+				</div>
+				<div>
+					<label for="text2">领衔主演:</label>
+					<input type="text" name="" id="text2" value="xxx老师">
+				</div>				
+				<input type="submit" name="" id="submit" value="提交" class="submit" />
+				<span class="close" id="closeBtn"> X </span>
+			</form>
+		</div>
+	
+	<script type="text/javascript">
+		// 获取所有的标签
+		var tbdy = document.getElementById('tbody');
+		var aDel = tbdy.getElementsByTagName('a');
+		var addBtn = document.getElementById('addBtn');
+		var dialog = document.getElementById('dialog');
+		var close = document.getElementById('closeBtn');
+		var cover = document.getElementById('cover');
+		var text1 = document.getElementById('text1');
+		var text2 = document.getElementById('text2');
+		var submit = document.getElementById('submit');
+		
+		//给每个a标签注册点击事件，删除tr
+		for(var i=0 ; i < aDel.length ; i++){
+			aDel[i].onclick = function(){
+				tbdy.removeChild(this.parentNode.parentNode);
+			}
+		}
+		
+		//注册点击事件,弹出对话框
+		addBtn.onclick = function(){
+			cover.style.display='block';
+			dialog.style.display = 'block';			
+		}
+		
+		//注册点击事件,提交表单
+		submit.onclick = function(){
+			// 获取表单信息 并清除输入框两端的空格
+			// 获取遮罩层和对话框隐藏
+			//判断两个输入框是否为空,为空则提示,不为空则调用封装的添加单元格信息的函数.
+			var str1 = text1.value.trim(); // 获取电影名称
+			var str2 = text2.value.trim(); // 获取演员名称
+			cover.style.display='none';
+			dialog.style.display = 'none';
+			if( str1 && str2){ 
+				 addMoveInfo(str1,str2);				
+			}else{
+				alert('电影名称和演员名称不能为空');
+			}
+			
+		}
+		
+		//注册点击事件,关闭对话框
+		close.onclick = function(){
+			cover.style.display='none';
+			dialog.style.display = 'none';
+		}
+	
+	
+		// 封装单元格
+		function addMoveInfo(str1,str2){
+			// 创建tr
+			var tr = document.createElement('tr');
+			tbdy.appendChild(tr);//将tr追加到tbody后面
+			//创建三个td
+			for(var i =0;i<3;i++){				
+				var td = document.createElement('td');
+				tr.appendChild(td); //将td追加到tr里面
+				
+				if(i ==0 ){ //第一个单元格赋值为str1
+					td.innerText = str1;
+				}else if(i==1){ //第二个单元格赋值为 str2
+ 					td.innerText = str2;
+				}else{ //第三个单元格  
+					//创建标签a
+					var a = document.createElement('a');
+					a.href='##';
+					a.innerText='删除';
+					td.appendChild(a);
+					
+					// 给a标签注册删除事件
+					a.onclick = function(){
+						tbdy.removeChild(this.parentNode.parentNode);
+					}
+				}
+			}
+			
+		}
+		
+		
+	</script>
+	
+	</body>
+</html>

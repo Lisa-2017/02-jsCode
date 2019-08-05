@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function Person(name,age){	
+				this.name = name;
+				this.age = age;
+				console.log(this);
+			}
+			var jay = new Person('周',41);
+			
+			function sum(){
+				console.log(this);
+			}
+			sum();
+			console.log(jay)
+		</script>
+	</body>
+</html>

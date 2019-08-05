@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button type="button" id='btn'> 按钮</button>
+		<button id="btn1">++</button>
+		<button id="btn2">--</button>
+		<script type="text/javascript">
+			var btn = document.getElementById('btn');
+			btn.onclick = fn; //将函数体赋值给事件也可以将匿名函数直接赋值给事件)
+			function fn(){ 
+				alert('被点击了');
+			}
+			
+			var btn1 = document.getElementById('btn1');
+			var btn2 = document.getElementById('btn2');
+			var num = 0;
+			
+			
+			function fn1(){
+				num++;
+				console.log(num);
+			}
+			function fn2(){
+				num--;
+				console.log(num);
+			}
+			btn1.onclick = fn1;
+			btn2.onclick = fn2 ;
+			
+			// btn1.onclick = function(){
+			// 	num++;
+			// 	console.log(num);
+			// }
+			// btn2.onclick = function(){
+			// 	num--;
+			// 	console.log(num);
+			// }
+			
+			
+			
+		</script>
+	</body>
+</html>

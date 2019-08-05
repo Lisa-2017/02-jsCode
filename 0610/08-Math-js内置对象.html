@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			console.log(Math.PI); //圆周率
+			console.log(Math.abs(-5)); //绝对值
+			console.log(Math.ceil(10.01)); //向上取整
+			console.log(Math.floor(10.99)); //向下取整
+			console.log(Math.max(1,2,3,4,6,9,20,14)); //求最大值
+			console.log(Math.min(1,2,3,4,6,9,20,14)); //求最小值
+			console.log(Math.round(4.49)); //四舍五入
+			console.log(Math.random()); //生成0-1之间的随机数
+			
+			
+			
+			// arguments 对象 ,在函数体中,可以获取实际参数,以数组的形式存储.
+			// max对象求最大值的原理
+			function getMax(){
+				var max = arguments[0];
+				for(var i =0;i<arguments.length;i++){
+					if(max<arguments[i]){
+						max = arguments[i];
+					}
+				}
+				return max;
+			}
+			console.log(getMax(3,4,6,10,5,22,55,12));
+			
+			
+			//生成0-5之间的随机数(0-5)
+			console.log( Math.random()*5);
+			//生成0-5之间的随机数,向下取整[0-5)
+			console.log(Math.floor(  Math.random()*5));
+			//随机点名
+			var arr =['余杭','何芹','张立','果昭','曹天星','刘志远','张丽',];
+			var count = parseInt(  Math.random()*5);
+			console.log(arr[count]);
+			
+		</script>
+	</body>
+</html>

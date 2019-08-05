@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.box{
+				width: 500px;
+				height: 400px;
+				background-color: #7FFFD4;
+				margin: 100px auto 0;
+			}
+			img{
+				display: block;/*清楚img标签的4像素的下边距*/
+			}
+			ul{
+				overflow: hidden;
+			}
+			ul li{
+				list-style: none;
+				float: left;
+				margin-right: 15px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<h2>美女发廊</h2>
+			<ul id="list">
+				<li>
+					<a href="img/1.jpg">
+						<img src="img/1-small.jpg" width="100"/>
+					</a>
+				</li>
+				<li>
+					<a href="img/2.jpg">
+						<img src="img/2-small.jpg" width="100"/>
+					</a>
+				</li>
+				<li>
+					<a href="img/3.jpg">
+						<img src="img/3-small.jpg" width="100"/>
+					</a>
+				</li>
+				<li>
+					<a href="img/4.jpg">
+						<img src="img/4-small.jpg" width="100"/>
+					</a>
+				</li>
+			</ul>
+			<img id='bigImg' src="img/placeholder.png" width="400" height="250" border="1"/>
+		</div>
+
+		<script type="text/javascript">
+			var list = document.getElementById('list');
+			var aImgs = list.getElementsByTagName('a');
+			var bigImg = document.getElementById('bigImg');
+			for(var i =0;i<aImgs.length;i++){
+				aImgs[i].onclick = function(){
+					bigImg.src = this.href;
+					return false;
+				}				
+			}
+		</script>
+	</body>
+</html>

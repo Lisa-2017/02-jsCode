@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			//一、地图类型
+			(function(){
+				//1.地图构造函数
+				function MapG(width,height,bgColor){
+					this.width = width;
+					this.height = height;
+					this.bgColor = bgColor;
+				}
+								
+				//2.将公用方法定义到原型对象中
+				MapG.prototype.init = function(){
+					//2.1 创建地图div
+					var divmap = document.createElement('div');
+					//2.2 设置div的css样式
+					divmap.style.width = this.width+'px';
+					divmap.style.height = this.height+'px';
+					divmap.style.backgroundColor = this.bgColor;
+					divmap.style.position ='relative';
+					divmap.id = 'divMap';
+					//2.3 将div追加到body中
+					document.body.appendChild(divmap);
+				}
+				//3.将构造函数公布到window对象中
+				window.MapG = MapG;
+			}());
+			
+			// 二、食物类型
+			(function(){
+				//食物的构造函数
+				function Food(width,height,bgColor){
+					this.width = width;
+					this.height = height;
+					this.bgColor = bgColor;
+					this.x = 0 ; //存储食物的x坐标(格数)
+					this.y = 0; //存储食物的y坐标(格数)
+				}
+				// 给食物的原型对象添加初始化方法
+				Food.prototype.init = function(){
+					// 获取地图元素
+					var divMap = document.getElementById('divMap');
+					//创建食物元素
+					var divFood = document.createElement('div');
+					//设置食物css样式
+					divFood.style.width = this.width +'px';
+					divFood.style.height =this.height+'px';
+					divFood.style.backgroundColor = this.bgColor;
+					divFood.style.position = 'absolute';
+					
+					// 获得格子的随机数
+					this.x = parseInt(Math.random() * (divMap.offsetWidth / this.width));  //offsetWidth必须是元素已经渲染到DOm上之后获取到的只读属性.
+					this.y = parseInt(Math.random() * (divMap.offsetHeight / this.height));
+					// 不可以使用元素的宽度,因为元素的宽度被获取后,得到的是带单位的字符串,不能参与数学运算,会报NAN
+					// this.x = parseInt( Math.random() * (divMap.offsetWidth / divFood.style.width) );
+					// this.y = parseInt( Math.random() * (divMap.offsetHeight / divFood.sytle.height) );
+					// 赋值给食物left和top
+					divFood.style.left = this.x * this.width +'px'; // 单位px不可忘记
+					divFood.style.top = this.y * this.height + 'px';
+					console.log(this.x);
+					console.log(this.y);
+					
+					//将食物追加到地图上
+					divMap.appendChild(divFood);
+				}
+				// 将Food公布到window中
+				window.Food = Food;
+			}());
+			
+			
+			// 三 、蛇类型
+			(function(){
+				// 用于存储蛇节的div的数组
+				var elements = [];
+				// 蛇的构造函数
+				function Snake(width,height,direction){
+					this.width = width;
+					this.height = height;
+					//蛇头+蛇身+蛇尾  三个对象组成的数组,每个对象包含xy坐标格数,以及颜色.
+					this.snBody = [{
+						x:3,
+						y:2,
+						bgcolor:'red',
+						},{
+						x:2,
+						y:2,
+						bgcolor:'yellow',
+						},{
+						x:1,
+						y:2,
+						bgcolor:'pink',
+					}]
+				}
+				
+				//蛇的公共的方法
+				Snake.prototype.init = function(){
+					//再新蛇之前,先删除旧蛇
+					remove();
+					// 获取地图Dom元素对象
+					var divMap = document.getElementById('divMap');
+					// 遍历数组snBody
+					for(var i = 0 ; i<this.snBody.length ; i++){
+						//创建三个小方块
+						var divSnake = document.createElement('div');						
+						//给三个小块设置css
+						divSnake.style.width = this.width+'px';
+						divSnake.style.height = this.height+'px';
+						divSnake.style.backgroundColor = this.snBody[i].bgcolor;						
+						//定位
+						divSnake.style.position = 'absolute';
+						divSnake.style.left = this.snBody[i].x * this.width +'px' ;
+						divSnake.style.top = this.snBody[i].y * this.height +'px';
+						// 将蛇追加到地图上
+						divMap.appendChild(divSnake);
+						// 将蛇的蛇节div元素存到数组中
+						elements.push(divSnake);						
+					}
+				}
+				
+				//蛇移动方法
+				Snake.prototype.move = function(){
+					//倒叙遍历蛇节,将第二节的xy坐标赋值给第三节,第一节自增1
+					for(var i = this.snBody.length-1; i>0;i--){
+						this.snBody[i].x = this.snBody[i-1].x;
+						this.snBody[i].y = this.snBody[i-1].y;
+					}
+					this.snBody[0].x += 1;					
+				}
+				// 蛇删除旧蛇的方法
+				function remove(){
+					var divMap = document.getElementById('divMap');
+					// 遍历elements数组,删除Dom上的旧蛇div
+					for(var i = 0; i<elements.length ; i++){
+						divMap.removeChild(elements[i]);
+					}
+					//清空数组
+					// elements = []; //清空数组的方式一
+					elements.splice(0); //清空数组的方式二
+				}
+				
+				// 公布Snake构造函数到window中
+				window.Snake = Snake;
+			}());
+			
+			
+			
+			
+			//四、实例化地图对象
+			var mapG =new MapG(800,600,'#ccc');
+			mapG.init(); // 调用原型对象中的方法,创建div地图
+			
+			// 实例化食物
+			var food = new Food(20,20,'green');
+			food.init();
+			
+			// 实例化蛇
+			var snake = new Snake(20,20)
+			snake.init();
+			
+			setInterval(function(){
+				snake.move();
+				snake.init();
+			},200)
+			
+			//五
+		</script>
+	</body>
+</html>

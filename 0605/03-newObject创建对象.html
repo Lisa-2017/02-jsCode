@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var p1 = new Object();
+			//设置属性
+			p1.name = "王一博";
+			p1.age = 22;
+			p1.gender = true;
+			
+			p1.dance = function(){
+				alert('跳舞');
+				return '王一博的舞蹈宇宙第一帅';
+			}
+			console.log(p1);
+			//读取属性
+			console.log(p1.name);
+			//打印函数体
+			console.log(p1.dance);
+			//调用对象的eat方法
+			p1.dance();
+			// 打印eat 方法的返回值
+			console.log( p1.dance() );
+			
+			
+			
+			var p2=new Object();
+			p2.name='王俊凯';
+			p2.age = '20';
+			p2.gender = true;
+			
+			p2.sing = function(){
+				alert('唱歌');
+				return '王俊凯的颜值超高，唱歌超好听';
+			}
+			console.log(p2);
+			console.log(p2.name);
+			console.log(p2.sing);
+			p2.sing();
+			console.log(p2.sing());
+			
+		</script>
+	</body>
+</html>

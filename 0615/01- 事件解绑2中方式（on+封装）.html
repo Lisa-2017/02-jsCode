@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			ul{
+				border: 1px solid #000;
+			}
+			ul li{
+				border: 1px solid #87CEEB;
+			}
+		</style>
+	</head>
+	<body>
+		<button id='btn'>按钮</button>
+		
+		<script type="text/javascript">
+			var btn = document.getElementById('btn');
+			
+			// // 绑定 带on 的事件
+			// btn.onclick = function(){
+			// 	alert('带on的方式绑定事件');				
+			// }
+			// //解除带on的绑定
+			// btn.onclick = null;
+			
+			
+			// addEventListener 方式绑定的事件--高版本浏览器
+			// btn.addEventListener('click',fn,false);
+			// function fn(){
+			// 	alert('这是addEventLister方式绑定的事件')
+			// }
+			// //解除addEventListener 方式绑定的事件--高版本浏览器
+			// btn.removeEventListener('click',fn,false);
+			
+			//解除attachEvent  方式的绑定事件  -- 低版本浏览器
+			btn.attachEvent('click',fn);
+			function fn(){
+				alert('这是attachEvent方式绑定的事件')
+			}
+			btn.deltachEvent('click',fn);
+			
+			
+			// 兼容性封装: 绑定监听事件
+			/**
+			 * 兼容性封装: 绑定监听事件
+			 * @param {事件源} obj
+			 * @param {事件类型} eventType
+			 * @param {事件函数} fn
+			 * @param {事件阶段} bool
+			 */
+			function addEvent(obj,eventType,fn,bool){
+				if(obj.addEventListener){
+					obj.addEventListener(eventType,fn,bool);
+				}else{
+					obj.attachEvent(eventType,fn);
+				}
+			}
+			//匿名函数
+			function fn1(){
+				alert('这是兼容性封装里面的fn函数');
+			}			
+			//调用封装好的函数,进行事件绑定
+			addEvent(btn,'click',fn1,false);
+			
+			
+			//兼容性封装--- 解除监听事件的绑定
+			/**
+			 * 兼容性封装--- 解除监听事件的绑定
+			 * @param {事件源} obj
+			 * @param {事件类型} eventType
+			 * @param {事件处理函数} fn
+			 * @param {事件阶段} bool
+			 */
+			function removeEvent(obj,eventType,fn,bool){
+				if(obj.removeEventListener){
+					obj.removeEventListener(eventType,fn,bool);
+				}else{
+					obj.deltachEvent('on'+eventType,fn);
+				}
+			}
+			//调用封装好的--解除绑定函数
+			removeEvent(btn,'click',fn1,false);
+			
+			
+		</script>
+	</body>
+</html>

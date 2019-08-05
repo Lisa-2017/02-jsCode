@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 100px;
+				height: 100px;
+				background-color: #FF7F50;
+				position: absolute;
+				top: 100px;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<button >移动到400</button>
+		<button >移动到800</button>
+		<div id="box"></div>
+		<script type="text/javascript">
+			var btns = document.getElementsByTagName('button');
+			var box = document.getElementById('box');
+			var timer = null;
+			// btns[0].onclick = function(){
+			// 	timer = setInterval(function(){
+			// 		var step = 6;
+			// 		var current = box.offsetLeft;
+			// 		current=current+step;
+			// 		if(current<=400){
+			// 			box.style.left = current+'px';
+			// 		}else{
+			// 			box.style.left = 400+'px';
+			// 			clearInterval(timer);
+			// 		}
+			// 	},300)
+			// }
+			// 
+			// 
+			// btns[1].onclick = function(){
+			// 	timer = setInterval(function(){
+			// 		var step = 7;
+			// 		var current = box.offsetLeft;
+			// 		current = current+step;
+			// 		if(current<=800){
+			// 			box.style.left = current+'px';
+			// 		}else{
+			// 			box.style.left = 800+'px';
+			// 			clearInterval(timer);
+			// 		}
+			// 	},30);
+			// }
+			
+			/**
+			 * @param {元素对象} obj
+			 * @param {目标值} target
+			 */
+			function myAnimate(obj,target){
+				clearInterval(obj.timer);
+				obj.timer = setInterval(function(){
+					var step = 9;
+					var current = obj.offsetLeft;
+					// current = current+step; //此处不需要，如果写了：正向会加速,反向则与if里面的-step抵消掉了所以无法返回移动.
+					
+					//判断往正向或反向移动,并再赋值给step
+					step = target-current>=0 ? step:-step; //获取的step可能为正也可能为负值.
+					
+					if( Math.abs(target-current) > Math.abs(step) ){ //判断目标值与当前位置之间的绝对值 与 step的大小,
+					//若大于,则current自增后再赋值给obj的left;
+						current = current+step;
+						obj.style.left = current+'px';
+					}else{
+					//若小于则直接将obj的left设置为目标值,同时清除定时器
+						clearInterval(obj.timer);
+						obj.style.left = target+'px';
+					}
+				},100);
+			}
+			btns[0].onclick= function(){
+				myAnimate(box,400);
+			}
+			
+			btns[1].onclick = function(){
+				myAnimate(box,800);
+			}
+			
+			
+		</script>
+	</body>
+</html>

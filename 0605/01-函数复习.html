@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 比较三个数字的最大值
+			/**
+			 * 比较三个数字的最大值
+			 * @param {Object} a
+			 * @param {Object} b
+			 * @param {Object} c
+			 */
+			function getMaxByThree(a,b,c){
+				return a>b?(a>c?a:b) :(b>c?b:c);
+			}
+			console.log('三个数中的最大值为：'+getMaxByThree(5,8,3));
+			
+			function getMaxByfour(a,b,c,d){
+				return a>b ? ( a>c ? (a>d?a:d) : (c>d?c:d) ) : ( b>c ? (b>d?b:d) : (c>d?c:d) );
+			}			
+			console.log('四个数中的最大值为：'+getMaxByfour(1,9,3,4));
+			
+			//求n 到m之间的所有数的和
+			
+			//求圆的面积			
+			function getCirleArea(r){
+				return  Math.PI*r*r;
+			}
+			console.log(parseInt( getCirleArea(5)));
+			
+			// 判断一个数是否是素数(质数)(只能被1和自己整除的数)
+			function getIsZhiShu(num){
+				for(var i=2;i<num;i++){
+					if( num % i == 0){						
+						return false;  //排除不是质数
+					}
+				}
+				return true;
+			}
+			console.log(getIsZhiShu(17));
+			
+			// var str=parseInt(prompt('请输入一个数字'));
+			// var bool =getIsZhiShu(str);
+			// if(bool===true){
+			// 	document.write('是质数');
+			// }else{
+			// 	document.write('不是质数');
+			// }
+			// 
+			
+			
+			//求一组数字中的最大值
+			
+			/**
+			 * 返回数组中的最大值
+			 * @param {数组} arr
+			 */
+			function getMaxByArray(arr){
+				// var arr=[1,2,3,4,5]
+				var max=arr[0];
+				for(var i=0 ;i<arr.length;i++){
+					if(max<arr[i]){
+						max=arr[i];
+					}
+				}
+				return max;
+			}
+			var t= [1,9,3,4,5]
+			console.log( getMaxByArray(t));
+			
+			// 求一个数组中的最大值和最小值还有和.  ====>返回一个数组[sum,max,min]
+			/**
+			 * 求一个数组中的最大值和最小值还有和
+			 * @param {数组} arr
+			 * @return {}
+			 */
+			function getMaxAndMinAndSumByArray(arr){
+				var sum=0;
+				var max=arr[0];
+				var min =arr[0];
+				
+				for(var i = 0; i<arr.length; i++){
+					sum+= arr[i];
+					if(max<arr[i]){
+						max=arr[i];
+					}
+					if(min>arr[i]){
+						min=arr[i];
+					}
+				}
+				return [sum, max,min];				
+				// return '总和为：'+sum+';'+'最大值为：'+max+';'+'最小值为：'+min;
+			}
+			
+			var arr = [1,2,3,4,5,9];
+			var res = getMaxAndMinAndSumByArray(arr);
+			console.log(res);
+			console.log('总和为：'+res[0]+';'+'最大值为：'+res[1]+';'+'最小值为：'+res[2]);
+			
+			
+			console.log( getMaxAndMinAndSumByArray([1,2,3,4,5,9])[0] );  //输出总和
+		</script>
+	</body>
+</html>

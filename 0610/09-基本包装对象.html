@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			//值类型:number  string  boolean
+			
+			// 三种基本包装类型
+			
+			var num = 8;
+			console.log(num.toString()); //字符型8 ，默认在内存中建立一个 Number对象并赋值给num,使其可以使用对象的toString方法
+			console.log(num);  			 //数字型8
+			
+			var num02 = new Number(5);	//以对象的形式创建数值5，    Number {5}   
+			console.log(num02);			 
+			var num03 = new Number(5);		
+			console.log(num02==num03);	// false 所以用对象的方式创建数值在有些情况下并不方便,反而是值类型的Number更好用
+			console.dir(Number);    	//以目录的方式查看Number构造函数
+			
+			var bool01 = new Boolean(true);
+			var bool02 = new Boolean(true);
+			if(bool01==bool02){
+				alert('哈哈哈');  //不相等所以不弹窗
+			}
+			
+			var str = new String('字符');
+			console.log(str);			// String {"字符"}
+			
+		</script>
+	</body>
+</html>

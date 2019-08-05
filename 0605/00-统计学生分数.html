@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			var num = parseInt(prompt('请输入学生人数'));
+			var arrScore=[];
+			var sum =0;
+			var max=0;
+			var min=0;
+			for(var i=0;i<num;i++){	
+				// 用数组接收每个学生的分数
+				arrScore[i]=parseInt(prompt('请输入第'+(i+1)+'个学生分数'));
+			}
+			max=arrScore[0];
+			min=arrScore[0];
+			for(var i=0;i<arrScore.length;i++){
+				// 求和
+				sum += arrScore[i];
+				//求最大值
+				if(max<arrScore[i+1]){
+					max=arrScore[i+1];
+				}
+				//求最小值
+				if(min>arrScore[i+1]){
+					mmin=arrScore[i+1];
+				}
+			}
+			console.log(arrScore);
+			console.log('总分是：'+sum);
+			console.log('平均分是：'+sum/arrScore.length);
+			console.log('最高分是：'+max);
+			console.log('最低分是：'+min);
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

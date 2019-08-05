@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 300px;
+				height: 200px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>		
+		<button>切换显示和隐藏</button>
+		<div id='box'></div>
+		<script type="text/javascript">
+			var btns = document.getElementsByTagName('button');
+			var box = document.getElementById('box');
+			var flag =true;	 //假设是一开始显示状态
+			
+			btns[0].onclick = function (){
+				if(flag==true){  //判断，若状态是显示,则使用div隐藏,文档背景设置为绿色，并将flag赋值为false,
+					box.style.display='none';
+					document.body.style.backgroundColor='#7FFFD4';
+					flag = false;
+					
+				}else{				//若状态是隐藏,则使用div显示,文档背景设置为红色，并将flag赋值为true,
+					box.style.display='block';
+					document.body.style.backgroundColor = '#FFC0CB';
+					flag = true;					
+				}
+			}			
+		</script>
+	</body>
+</html>

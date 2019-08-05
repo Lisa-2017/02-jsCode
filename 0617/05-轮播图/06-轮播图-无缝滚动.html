@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			
+			.box {
+				width: 900px;
+				height: 350px;
+				margin: 100px auto;
+					overflow: hidden;
+				position: relative;
+			}
+			
+			.box ul {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 5400px;
+			}
+			
+			.box ul li {
+				float: left;
+			}
+			
+			.box ol {
+				position: absolute;
+				right: 10px;
+				bottom: 10px;
+			}
+			
+			.box ol li {
+				float: left;
+				width: 20px;
+				height: 20px;
+				line-height: 20px;
+				border: 1px solid #fff;
+				background: #333;
+				color: #999;
+				text-align: center;
+				margin-left: 10px;
+				cursor: pointer;
+				border-radius: 50%;
+			}
+			/*指定标签选择器*/
+			
+			.box ol li.current {
+				border-color: #f60;
+				color: #f60;
+			}
+			
+			.box .leftBtn,
+			.box .rightBtn {
+				width: 40px;
+				height: 100px;
+				background: url(img/index.png) 0 0;
+				position: absolute;
+				top: 50%;
+				margin-top: -50px;
+			}
+			
+			.box .leftBtn {
+				left: 0;
+			}
+			
+			.box .rightBtn {
+				right: 0;
+				background-position: -50px 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box" id="box">
+			<ul id="ulList">				
+				<li><img src="img/01.jpg" height="350" width="900" alt="" /></li>
+				<li><img src="img/02.jpg" height="350" width="900" alt="" /></li>
+				<li><img src="img/03.jpg" height="350" width="900" alt="" /></li>
+				<li><img src="img/04.jpg" height="350" width="900" alt="" /></li>
+				<li><img src="img/05.jpg" height="350" width="900" alt="" /></li>
+				<li><img src="img/01.jpg" height="350" width="900" alt="" /></li>
+			</ul>
+			<ol id="olList">
+				<li class="current">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ol>
+			<a href="##" class="leftBtn" id="leftBtn"></a>
+			<a href="##" class="rightBtn" id="rightBtn"></a>
+		</div>
+		<script type="text/javascript">			
+			var rightBtn = document.getElementById('rightBtn');
+			var leftBtn = document.getElementById('leftBtn');
+			var olList = document.getElementById('olList');
+			var ulList = document.getElementById('ulList');
+			var olNum = 0; //ol计数器
+			var ulNum = 0;//ul计数器	
+			
+			// 给右向箭头的绑定点击事件
+			rightBtn.onclick = function (){
+				olNum++;
+				if(olNum>4){
+					olNum=0;
+				}				
+				for(var i = 0; i<olList.children.length ; i++){					
+					olList.children[i].className = '';
+				}
+				olList.children[olNum].className = 'current';
+				
+				ulNum++;
+				if(ulNum>5){
+					ulNum=1;
+					ulList.style.left = '0px';
+				}	
+				var move = ulNum*-900;
+				myAnimate(ulList,move,30);	
+			}
+			// 给左向箭头的绑定点击事件
+			leftBtn.onclick = function(){
+				olNum--;
+				if(olNum<0){
+					olNum=4;
+				}				
+				for(var i = 0; i<olList.children.length ; i++){					
+					olList.children[i].className = '';
+				}
+				olList.children[olNum].className = 'current';
+				
+				ulNum--;
+				if(ulNum<0){					
+					ulNum=4;
+					ulList.style.left = '-4500px'
+				}	
+				var move = ulNum*-900;
+				myAnimate(ulList,move,30);
+			}
+			
+			//循环绑定小圆点单击事件
+			for(var i = 0; i < olList.children.length ; i++){	
+				
+				olList.children[i].index = i; //存储小圆点的编号
+				
+				olList.children[i].onclick = function(){
+					// 1.切换小圆点
+					for( var i = 0 ;i < olList.children.length ; i++ ){
+						olList.children[i].className = '';
+					}
+					this.className = 'current';
+										
+					// 2.滑动到与圆点对应的图片
+					var  move = this.index * -900;
+					myAnimate( ulList,move,200);
+					
+					//将编号统一到num中
+					ulNum = this.index ; //将当前点击的小圆点的索引赋值给ulNum ,使用图片序号与小圆点的序号关联起来
+					olNum = this.index ; //将当前点击的小圆点的索引赋值给olNum ,使用左右按钮与小圆点的需要关联起来
+				}
+			}
+			
+			
+			
+			
+			/**
+			 * @param {元素对象} obj
+			 * @param {目标值} target
+			 */
+			function myAnimate(obj,target,bushu){
+				clearInterval(obj.timer);
+				obj.timer = setInterval(function(){
+					// var step = 50; //步数
+					var step = bushu; //步数
+					//当前left属性值
+					var current = obj.offsetLeft;
+					// 判断当前值在目标值的哪一侧,如果当前值小于目标值则step为正向右移动,反之step为负向左移动；在赋值给step. //解决向右移动到更大的目标值后,再次调用无法向左移动到较小的目标值问题.
+					step = target >= current? step :-step;					
+					if( Math.abs(target-current) >= Math.abs(step) ){
+						current = current+step; // 自增两
+						obj.style.left = current+'px';						
+					}else{
+						clearInterval(obj.timer);
+						obj.style.left = target+'px';
+					}					
+				},10)
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 属性:就是属性名和属性值,key/value 键值对.
+			// 属性值:对象.属性名
+			// 循环的次数==属性的个数
+			var json01 = {"name":"周","age":41,"gender":true,"address":'中国'};
+			for(var k in json01){
+				console.log(k);   //输出所有的属性名.
+				console.log(json01.k);   //被解析成动态给json01对象动态添加key属性 返回undefined
+				console.log(json01[k]);  //用另一种访问对象属性的方法访问对象的属性,返回属性值 
+			}
+		</script>
+	</body>
+</html>

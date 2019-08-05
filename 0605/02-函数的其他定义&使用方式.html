@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//有名函数
+			//匿名函数
+			// 匿名函数的定义两种方式
+			(function(){
+				console.log('第一种匿名函数的定义方式');
+			}());
+			
+			(function(){
+				console.log('第二种匿名函数的定义方式');
+			})();
+			
+			// 有名函数作为参数
+			function fn1(a){
+				console.log(a);  //	==>打印fn2的函数体
+				a();			// ===> 调用执行fn2
+			}
+			function fn2(){
+				console.log('这是fn2');
+			}
+			fn1(fn2);
+			
+			//匿名函数作为参数传递
+			function fn3(b){
+				console.log(b);  //===> 打印匿名函数的函数体
+				b(); 			// ===> 调用执行匿名函数
+			}
+			fn3(function(){console.log('这是匿名数作为参数');});
+			
+		</script>
+	</body>
+</html>
